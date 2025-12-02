@@ -1,0 +1,68 @@
+<div class="container" style="max-width: 1024px; margin: 0 auto; padding: 2rem;">
+  <% if @page.present? %>
+    <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;"><%= @page.title %></h1>
+    <div class="card">
+      <div class="card-body">
+        <%= @page.content %>
+      </div>
+    </div>
+  <% else %>
+    <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;">Contact Us</h1>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div class="card">
+        <h2 class="card-title">Get In Touch</h2>
+        <div class="card-text">
+          <p><strong>Iron & Motion Fitness Equipment</strong></p>
+          <p>
+            Winnipeg, Manitoba<br>
+            Canada
+          </p>
+
+          <p style="margin-top: 1.5rem;">
+            <strong>Business Hours:</strong><br>
+            Monday - Friday: 9:00 AM - 6:00 PM<br>
+            Saturday: 10:00 AM - 4:00 PM<br>
+            Sunday: Closed
+          </p>
+
+          <p style="margin-top: 1.5rem;">
+            Have questions about our products? Feel free to visit our store or browse our online catalog.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Quick Links</h2>
+        <div class="card-text">
+          <ul style="list-style: none; padding: 0; line-height: 2;">
+            <li><%= link_to "Browse Products", products_path, class: "btn btn-link" %></li>
+            <li><%= link_to "About Us", about_path, class: "btn btn-link" %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "My Orders", orders_path, class: "btn btn-link" %></li>
+              <li><%= link_to "My Addresses", addresses_path, class: "btn btn-link" %></li>
+            <% else %>
+              <li><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-link" %></li>
+              <li><%= link_to "Login", new_user_session_path, class: "btn btn-link" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 1rem; margin-top: 2rem;">
+      <p style="margin: 0; color: #856404;">
+        <strong>Admin Note:</strong> Create a Contact page in the admin panel to customize this content.
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<!-- Responsive Styles -->
+<style>
+  @media (max-width: 768px) {
+    .container > div:nth-child(2) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

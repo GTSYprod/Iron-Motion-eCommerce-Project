@@ -1,0 +1,52 @@
+<div class="product-card">
+  <%= link_to product_path(product), class: "product-card-link" do %>
+    <!-- Product Image -->
+    <div class="product-card__image-wrapper">
+      <% if product.images.attached? %>
+        <%= image_tag product.images.first.variant(:medium),
+            alt: product.name,
+            class: "product-card__image" %>
+      <% else %>
+        <svg class="product-card__image" style="padding: 2rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+        </svg>
+      <% end %>
+
+      <!-- Badges -->
+      <% if product.on_sale %>
+        <span class="product-card__badge product-card__badge-sale">SALE</span>
+      <% elsif product.is_new %>
+        <span class="product-card__badge product-card__badge-new">NEW</span>
+      <% end %>
+    </div>
+
+    <!-- Product Content -->
+    <div class="product-card__content">
+      <div class="product-card__category"><%= product.category&.name %></div>
+      <h3 class="product-card__title"><%= product.name %></h3>
+
+      <!-- Price and Stock -->
+      <div class="product-card__footer">
+        <div class="product-card__price"><%= number_to_currency(product.price) %></div>
+
+        <!-- Stock Status -->
+        <% if product.out_of_stock? %>
+          <span class="product-card__stock product-card__stock-out-of-stock">
+            <span class="product-card__stock-indicator"></span>
+            Out of Stock
+          </span>
+        <% elsif product.low_stock? %>
+          <span class="product-card__stock product-card__stock-low-stock">
+            <span class="product-card__stock-indicator"></span>
+            Low Stock
+          </span>
+        <% else %>
+          <span class="product-card__stock product-card__stock-in-stock">
+            <span class="product-card__stock-indicator"></span>
+            In Stock
+          </span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+<div class="container" style="max-width: 1024px; margin: 0 auto; padding: 2rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h1 style="font-size: 2rem; font-weight: 700;">My Addresses</h1>
+    <%= link_to "Add New Address", new_address_path, class: "btn btn-primary" %>
+  </div>
+
+  <% if @addresses.any? %>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">
+      <% @addresses.each do |address| %>
+        <div class="card <%= 'card-primary' if address.is_default %>">
+          <% if address.is_default %>
+            <div style="margin-bottom: 0.5rem;">
+              <span class="product-card__badge product-card__badge-popular">Default</span>
+            </div>
+          <% end %>
+
+          <p style="margin: 0; line-height: 1.6;">
+            <%= address.street_address %><br>
+            <%= address.city %>, <%= address.province %><br>
+            <%= address.postal_code %>
+          </p>
+
+          <div class="btn-group" style="margin-top: 1rem;">
+            <%= link_to "Edit", edit_address_path(address), class: "btn btn-sm btn-outline" %>
+            <%= button_to "Delete",
+                address_path(address),
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="product-grid-empty">
+      <div class="product-grid-empty__icon">📍</div>
+      <h2 class="product-grid-empty__title">No addresses saved</h2>
+      <p class="product-grid-empty__description">Add an address to make checkout faster</p>
+      <%= link_to "Add Your First Address", new_address_path, class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+</div>

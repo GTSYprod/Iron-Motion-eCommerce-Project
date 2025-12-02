@@ -1,0 +1,116 @@
+<div class="container" style="max-width: 1280px; margin: 0 auto; padding: 2rem;">
+  <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">Checkout</h1>
+
+  <%= form_with url: checkout_path, method: :post do |f| %>
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+      <!-- Checkout Form -->
+      <div>
+        <!-- Shipping Address -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+          <h2 class="card-title">Shipping Address</h2>
+
+          <% if @addresses.any? %>
+            <div class="form-group">
+              <%= f.label :address_id, "Select Address" %>
+              <%= f.collection_select :address_id,
+                  @addresses,
+                  :id,
+                  :full_address,
+                  { selected: @selected_address&.id },
+                  { class: "form-control" } %>
+            </div>
+
+            <div style="margin-top: 1rem;">
+              <%= link_to "Add New Address", new_address_path, class: "btn btn-outline-secondary btn-sm" %>
+            </div>
+
+            <% if @selected_address %>
+              <div style="margin-top: 1.5rem; padding: 1rem; background-color: #f8f9fa; border-radius: 4px;">
+                <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Shipping To:</h4>
+                <p style="margin: 0; line-height: 1.6;">
+                  <%= @selected_address.street_address %><br>
+                  <%= @selected_address.city %>, <%= @selected_address.province %><br>
+                  <%= @selected_address.postal_code %>
+                </p>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="card-text">You haven't added any addresses yet.</p>
+            <%= link_to "Add Address", new_address_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+
+        <!-- Order Items -->
+        <div class="card">
+          <h2 class="card-title">Order Items</h2>
+
+          <% @cart.shopping_cart_items.each do |item| %>
+            <div style="display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #e9ecef;">
+              <% if item.product.images.attached? %>
+                <%= image_tag item.product.images.first.variant(:thumb),
+                    style: "width: 80px; height: 80px; object-fit: cover; border-radius: 4px;" %>
+              <% end %>
+
+              <div style="flex: 1;">
+                <h4 style="font-weight: 600; margin-bottom: 0.25rem;"><%= item.product.name %></h4>
+                <p class="product-card__category"><%= item.product.category&.name %></p>
+                <p style="margin-top: 0.5rem; color: #666;">Quantity: <%= item.item_quantity %></p>
+              </div>
+
+              <div style="text-align: right;">
+                <p style="font-weight: 600;"><%= number_to_currency(item.product.price) %></p>
+                <p style="color: #666; font-size: 0.875rem;">Subtotal: <%= number_to_currency(item.subtotal) %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div>
+        <div class="card" style="position: sticky; top: 1rem;">
+          <h2 class="card-title">Order Summary</h2>
+
+          <div style="margin: 1.5rem 0;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>Items:</span>
+              <span><%= @cart.item_count %></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: 600;">
+              <span>Subtotal:</span>
+              <span><%= number_to_currency(@cart.total) %></span>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid #e9ecef; padding-top: 1rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 700;">
+              <span>Total:</span>
+              <span class="product-card__price"><%= number_to_currency(@cart.total) %></span>
+            </div>
+          </div>
+
+          <% if @addresses.any? %>
+            <%= f.submit "Place Order", class: "btn btn-success btn-lg btn-block" %>
+          <% else %>
+            <button disabled class="btn btn-lg btn-block" style="background-color: #999; cursor: not-allowed;">
+              Add Address First
+            </button>
+          <% end %>
+
+          <p class="help-text" style="margin-top: 1rem; text-align: center;">
+            By placing this order, you agree to our terms and conditions.
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<!-- Responsive Styles -->
+<style>
+  @media (max-width: 768px) {
+    .container > form > div:first-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

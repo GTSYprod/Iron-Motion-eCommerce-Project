@@ -1,0 +1,43 @@
+<footer class="bg-gray-800 text-white mt-12">
+  <div class="container mx-auto px-4 py-8">
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Company Info -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">Iron & Motion</h3>
+        <p class="text-gray-400">
+          Winnipeg-based fitness equipment retailer specializing in home and commercial gym equipment.
+        </p>
+        <p class="text-gray-400 mt-2">
+          Serving our community for 9 years with quality fitness equipment and exceptional service.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><%= link_to "Products", products_path, class: "text-gray-400 hover:text-white transition" %></li>
+          <li><%= link_to "About Us", about_path, class: "text-gray-400 hover:text-white transition" %></li>
+          <li><%= link_to "Contact", contact_path, class: "text-gray-400 hover:text-white transition" %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "My Orders", orders_path, class: "text-gray-400 hover:text-white transition" %></li>
+            <li><%= link_to "Shopping Cart", shopping_cart_path, class: "text-gray-400 hover:text-white transition" %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">Contact</h3>
+        <p class="text-gray-400">Winnipeg, Manitoba</p>
+        <p class="text-gray-400">Canada</p>
+        <p class="text-gray-400 mt-2">Established: 2016</p>
+        <p class="text-gray-400">Team: 6 dedicated employees</p>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+      <p>&copy; <%= Time.current.year %> Iron & Motion Fitness Equipment. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,44 @@
+<div class="container" style="max-width: 1280px; margin: 0 auto; padding: 2rem;">
+  <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">My Orders</h1>
+
+  <% if @orders.any? %>
+    <% @orders.each do |order| %>
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+          <div>
+            <h3 class="card-title">Order #<%= order.id %></h3>
+            <p style="color: #666; font-size: 0.875rem;">
+              Placed on <%= order.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+            </p>
+          </div>
+          <div style="text-align: right;">
+            <span class="btn btn-sm <%= order.pending? ? 'btn-warning' : order.delivered? ? 'btn-success' : 'btn-primary' %>" style="cursor: default;">
+              <%= order.order_status.titleize %>
+            </span>
+          </div>
+        </div>
+
+        <div style="border-top: 1px solid #e9ecef; padding-top: 1rem; margin-bottom: 1rem;">
+          <p style="margin-bottom: 0.5rem;"><strong>Items:</strong> <%= order.order_items.count %></p>
+          <p style="margin-bottom: 0.5rem;"><strong>Total:</strong> <span class="product-card__price"><%= number_to_currency(order.order_total) %></span></p>
+          <p style="margin-bottom: 0;"><strong>Shipping to:</strong> <%= order.address.city %>, <%= order.address.province %></p>
+        </div>
+
+        <div class="form-actions" style="border-top: none; padding-top: 0; margin-top: 0;">
+          <%= link_to "View Details", order_path(order), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <%= paginate @orders %>
+    </div>
+  <% else %>
+    <div class="product-grid-empty">
+      <div class="product-grid-empty__icon">📦</div>
+      <h2 class="product-grid-empty__title">No orders yet</h2>
+      <p class="product-grid-empty__description">Start shopping to see your orders here</p>
+      <%= link_to "Browse Products", products_path, class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+</div>

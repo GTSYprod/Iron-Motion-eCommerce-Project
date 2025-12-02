@@ -1,0 +1,39 @@
+<div class="container" style="max-width: 1024px; margin: 0 auto; padding: 2rem;">
+  <% if @page.present? %>
+    <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem;"><%= @page.title %></h1>
+    <div class="card">
+      <div class="card-body">
+        <%= @page.content %>
+      </div>
+    </div>
+  <% else %>
+    <div class="card">
+      <h1 class="card-title">About Iron & Motion Fitness Equipment</h1>
+      <div class="card-text">
+        <p>Welcome to Iron & Motion, your premier destination for quality fitness equipment in Winnipeg, Manitoba.</p>
+
+        <h2 style="font-size: 1.5rem; font-weight: 600; margin: 2rem 0 1rem 0;">Our Story</h2>
+        <p>For over 9 years, Iron & Motion has been serving the Winnipeg community with top-quality fitness equipment for home and commercial use. Our team of 6 dedicated employees is passionate about helping you achieve your fitness goals.</p>
+
+        <h2 style="font-size: 1.5rem; font-weight: 600; margin: 2rem 0 1rem 0;">What We Offer</h2>
+        <ul style="line-height: 1.8;">
+          <li>Free Weights & Dumbbells</li>
+          <li>Resistance Machines</li>
+          <li>Cardio Equipment</li>
+          <li>Yoga & Recovery Tools</li>
+          <li>Training Accessories</li>
+          <li>Nutritional Supplements</li>
+        </ul>
+
+        <h2 style="font-size: 1.5rem; font-weight: 600; margin: 2rem 0 1rem 0;">Our Commitment</h2>
+        <p>We're committed to providing exceptional customer service and high-quality products that help you build the perfect home or commercial gym.</p>
+      </div>
+    </div>
+
+    <div style="background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 1rem; margin-top: 2rem;">
+      <p style="margin: 0; color: #856404;">
+        <strong>Admin Note:</strong> Create an About page in the admin panel to customize this content.
+      </p>
+    </div>
+  <% end %>
+</div>

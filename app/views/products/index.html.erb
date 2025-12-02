@@ -1,0 +1,61 @@
+<div class="container" style="max-width: 1536px; margin: 0 auto; padding: 2rem;">
+  <!-- Search Bar (Requirement 2.6) -->
+  <div class="search-form" style="margin-bottom: 2rem;">
+    <%= form_with url: search_products_path, method: :get, class: "form-inline" do |f| %>
+      <div class="form-group">
+        <%= f.text_field :query,
+            placeholder: "Search products...",
+            value: params[:query] %>
+      </div>
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <!-- Filters (Requirement 2.4) -->
+  <div class="btn-group" style="margin-bottom: 1.5rem;">
+    <%= link_to "All Products", products_path,
+        class: "btn #{params[:on_sale].blank? && params[:new_arrivals].blank? && params[:recently_updated].blank? ? 'btn-primary' : 'btn-outline'}" %>
+    <%= link_to "On Sale", products_path(on_sale: true),
+        class: "btn #{params[:on_sale] == 'true' ? 'btn-primary' : 'btn-outline'}" %>
+    <%= link_to "New Arrivals", products_path(new_arrivals: true),
+        class: "btn #{params[:new_arrivals] == 'true' ? 'btn-primary' : 'btn-outline'}" %>
+    <%= link_to "Recently Updated", products_path(recently_updated: true),
+        class: "btn #{params[:recently_updated] == 'true' ? 'btn-primary' : 'btn-outline'}" %>
+  </div>
+
+  <!-- Category Filter (Requirement 2.2) -->
+  <div style="margin-bottom: 2rem;">
+    <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Categories:</h3>
+    <div class="btn-group">
+      <%= link_to "All", products_path, class: "btn btn-sm #{params[:category_id].blank? ? 'btn-primary' : 'btn-outline'}" %>
+      <% @categories.each do |category| %>
+        <%= link_to category.name,
+            products_path(category_id: category.id),
+            class: "btn btn-sm #{params[:category_id].to_i == category.id ? 'btn-primary' : 'btn-outline'}" %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <% if @products.any? %>
+    <div class="product-grid" style="margin-bottom: 2rem;">
+      <% @products.each do |product| %>
+        <%= render 'products/product_card', product: product %>
+      <% end %>
+    </div>
+
+    <!-- Pagination (Requirement 2.5) -->
+    <div style="text-align: center;">
+      <%= paginate @products %>
+    </div>
+  <% else %>
+    <div class="product-grid-empty">
+      <div class="product-grid-empty__icon">📦</div>
+      <h2 class="product-grid-empty__title">No products found</h2>
+      <% if params[:query].present? || params[:category_id].present? || params[:on_sale].present? || params[:new_arrivals].present? || params[:recently_updated].present? %>
+        <p class="product-grid-empty__description">Try adjusting your filters or search terms</p>
+        <%= link_to "Clear filters", products_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

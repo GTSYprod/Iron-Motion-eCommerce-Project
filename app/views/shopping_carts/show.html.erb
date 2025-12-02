@@ -1,0 +1,120 @@
+<div class="container" style="max-width: 1280px; margin: 0 auto; padding: 2rem;">
+  <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">Shopping Cart</h1>
+
+  <% if @cart_items.any? %>
+    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+      <!-- Cart Items -->
+      <div>
+        <% @cart_items.each do |item| %>
+          <div class="card-horizontal" style="margin-bottom: 1rem;">
+            <!-- Product Image -->
+            <% if item.product.images.attached? %>
+              <%= link_to product_path(item.product) do %>
+                <%= image_tag item.product.images.first.variant(:thumb),
+                    class: "card-img-left",
+                    style: "width: 150px;" %>
+              <% end %>
+            <% end %>
+
+            <!-- Product Info -->
+            <div class="card-body">
+              <h3 class="card-title">
+                <%= link_to item.product.name, product_path(item.product), style: "text-decoration: none; color: inherit;" %>
+              </h3>
+              <p class="product-card__category"><%= item.product.category&.name %></p>
+              <p class="product-card__price" style="margin-top: 0.5rem;">
+                <%= number_to_currency(item.product.price) %>
+              </p>
+
+              <!-- Quantity Controls -->
+              <div style="margin-top: 1rem; display: flex; align-items: center; gap: 1rem;">
+                <%= form_with url: update_item_shopping_cart_path(id: item.id), method: :patch, style: "display: flex; align-items: center; gap: 0.5rem;" do |f| %>
+                  <%= f.label :item_quantity, "Qty:", style: "font-weight: 500;" %>
+                  <%= f.number_field :item_quantity,
+                      value: item.item_quantity,
+                      min: 0,
+                      max: 10,
+                      style: "width: 80px;" %>
+                  <%= f.submit "Update", class: "btn btn-sm btn-primary" %>
+                <% end %>
+
+                <%= button_to "Remove",
+                    remove_item_shopping_cart_path(id: item.id),
+                    method: :delete,
+                    data: { confirm: "Remove this item?" },
+                    class: "btn btn-sm btn-danger" %>
+              </div>
+
+              <p style="margin-top: 1rem; font-weight: 600; font-size: 1.125rem;">
+                Subtotal: <%= number_to_currency(item.subtotal) %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+        <%= button_to "Clear Cart",
+            clear_shopping_cart_path,
+            method: :delete,
+            data: { confirm: "Clear entire cart?" },
+            class: "btn btn-outline-secondary",
+            style: "margin-top: 1rem;" %>
+      </div>
+
+      <!-- Order Summary -->
+      <div>
+        <div class="card" style="position: sticky; top: 1rem;">
+          <h2 class="card-title">Order Summary</h2>
+
+          <div style="margin: 1.5rem 0; border-top: 1px solid #e9ecef; padding-top: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+              <span>Items:</span>
+              <span><%= @cart.item_count %></span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-weight: 600;">
+              <span>Subtotal:</span>
+              <span><%= number_to_currency(@cart.total) %></span>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid #e9ecef; padding-top: 1rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 700;">
+              <span>Total:</span>
+              <span class="product-card__price"><%= number_to_currency(@cart.total) %></span>
+            </div>
+          </div>
+
+          <% if user_signed_in? %>
+            <%= link_to "Proceed to Checkout",
+                checkout_path,
+                class: "btn btn-primary btn-lg btn-block" %>
+          <% else %>
+            <p class="help-text" style="margin-bottom: 1rem;">Please log in to checkout</p>
+            <%= link_to "Log In",
+                new_user_session_path,
+                class: "btn btn-primary btn-lg btn-block" %>
+            <%= link_to "Sign Up",
+                new_user_registration_path,
+                class: "btn btn-outline btn-lg btn-block",
+                style: "margin-top: 0.5rem;" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="product-grid-empty">
+      <div class="product-grid-empty__icon">🛒</div>
+      <h2 class="product-grid-empty__title">Your cart is empty</h2>
+      <p class="product-grid-empty__description">Add some products to get started!</p>
+      <%= link_to "Continue Shopping", products_path, class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+</div>
+
+<!-- Responsive Styles -->
+<style>
+  @media (max-width: 768px) {
+    .container > div > div:first-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

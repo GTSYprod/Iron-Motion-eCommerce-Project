@@ -1,0 +1,118 @@
+<div class="container" style="max-width: 1280px; margin: 0 auto; padding: 2rem;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+    <!-- Product Images -->
+    <div class="card">
+      <% if @product.images.attached? %>
+        <div style="margin-bottom: 1rem;">
+          <%= image_tag @product.images.first.variant(:large),
+              alt: @product.name,
+              style: "width: 100%; border-radius: 8px;",
+              id: "main-image" %>
+        </div>
+
+        <!-- Image Thumbnails -->
+        <% if @product.images.count > 1 %>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+            <% @product.images.each do |image| %>
+              <%= image_tag image.variant(:thumb),
+                  alt: @product.name,
+                  style: "width: 100%; border-radius: 4px; cursor: pointer;" %>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <div style="aspect-ratio: 1/1; background-color: #f8f9fa; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+          <span style="color: #999;">No Image Available</span>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Product Details -->
+    <div>
+      <!-- Badges -->
+      <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+        <% if @product.on_sale %>
+          <span class="product-card__badge product-card__badge-sale">ON SALE</span>
+        <% end %>
+        <% if @product.is_new %>
+          <span class="product-card__badge product-card__badge-new">NEW</span>
+        <% end %>
+      </div>
+
+      <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;"><%= @product.name %></h1>
+
+      <p class="product-card__category" style="margin-bottom: 1rem;">
+        <%= link_to @product.category.name, category_path(@product.category), style: "color: #1e90ff; text-decoration: none;" %>
+      </p>
+
+      <!-- Price -->
+      <div class="product-card__price" style="font-size: 2.5rem; margin-bottom: 1.5rem;">
+        <%= number_to_currency(@product.price) %>
+      </div>
+
+      <!-- Stock Status -->
+      <div style="margin-bottom: 1.5rem;">
+        <% if @product.in_stock? %>
+          <span class="product-card__stock product-card__stock-in-stock">
+            <span class="product-card__stock-indicator"></span>
+            In Stock
+          </span>
+        <% elsif @product.low_stock? %>
+          <span class="product-card__stock product-card__stock-low-stock">
+            <span class="product-card__stock-indicator"></span>
+            Low Stock - Order Soon!
+          </span>
+        <% else %>
+          <span class="product-card__stock product-card__stock-out-of-stock">
+            <span class="product-card__stock-indicator"></span>
+            Out of Stock
+          </span>
+        <% end %>
+      </div>
+
+      <!-- Add to Cart (Requirement 3.1.1) -->
+      <% if @product.in_stock? || @product.low_stock? %>
+        <%= form_with url: add_item_shopping_cart_path, method: :post, style: "margin-bottom: 1.5rem;" do |f| %>
+          <%= f.hidden_field :product_id, value: @product.id %>
+          <div class="form-group">
+            <%= f.label :quantity, "Quantity:" %>
+            <%= f.number_field :quantity, value: 1, min: 1, max: 10 %>
+          </div>
+          <%= f.submit "Add to Cart", class: "btn btn-primary btn-lg btn-block" %>
+        <% end %>
+      <% else %>
+        <button disabled class="btn btn-lg btn-block" style="background-color: #999; cursor: not-allowed;">
+          Out of Stock
+        </button>
+      <% end %>
+
+      <!-- Description -->
+      <div class="card" style="margin-top: 2rem;">
+        <h2 class="card-title">Description</h2>
+        <p class="card-text" style="white-space: pre-wrap;"><%= @product.description %></p>
+      </div>
+
+      <!-- Specifications -->
+      <% if @product.specification.present? %>
+        <div class="card" style="margin-top: 1rem;">
+          <h2 class="card-title">Specifications</h2>
+          <p class="card-text" style="white-space: pre-wrap;"><%= @product.specification %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Back to Products -->
+  <div style="margin-top: 2rem; text-align: center;">
+    <%= link_to "← Back to Products", products_path, class: "btn btn-outline" %>
+  </div>
+</div>
+
+<!-- Responsive Styles for Mobile -->
+<style>
+  @media (max-width: 768px) {
+    .container > div:first-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

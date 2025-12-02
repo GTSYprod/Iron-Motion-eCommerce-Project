@@ -1,0 +1,52 @@
+<%= form_with model: address, class: "card" do |f| %>
+  <% if address.errors.any? %>
+    <div style="background-color: rgba(220, 53, 69, 0.1); border: 1px solid #dc3545; border-radius: 4px; padding: 1rem; margin-bottom: 1.5rem;">
+      <h3 style="color: #dc3545; margin: 0 0 0.5rem 0; font-size: 1rem; font-weight: 600;">
+        <%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:
+      </h3>
+      <ul style="margin: 0; padding-left: 1.5rem;">
+        <% address.errors.full_messages.each do |message| %>
+          <li style="color: #dc3545;"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :street_address, "Street Address" %>
+    <%= f.text_field :street_address, placeholder: "123 Main Street" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, placeholder: "Winnipeg" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :province %>
+    <%= f.select :province,
+        options_for_select([
+          ['Alberta', 'AB'], ['British Columbia', 'BC'], ['Manitoba', 'MB'],
+          ['New Brunswick', 'NB'], ['Newfoundland and Labrador', 'NL'],
+          ['Nova Scotia', 'NS'], ['Ontario', 'ON'], ['Prince Edward Island', 'PE'],
+          ['Quebec', 'QC'], ['Saskatchewan', 'SK']
+        ], address.province),
+        { prompt: "Select Province" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :postal_code, "Postal Code" %>
+    <%= f.text_field :postal_code, placeholder: "A1A 1A1" %>
+    <span class="help-text">Canadian postal code format (e.g., A1A 1A1)</span>
+  </div>
+
+  <div class="form-check">
+    <%= f.check_box :is_default %>
+    <%= f.label :is_default, "Set as default address" %>
+  </div>
+
+  <div class="form-actions">
+    <%= link_to "Cancel", addresses_path, class: "btn btn-outline-secondary" %>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

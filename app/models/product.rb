@@ -53,6 +53,14 @@ class Product < ApplicationRecord
     stock_status == 'in_stock' && stock_quantity > 0
   end
 
+  def low_stock?
+    stock_status == 'low_stock'
+  end
+
+  def out_of_stock?
+    stock_status == 'out_of_stock' || stock_quantity == 0
+  end
+
   # Ransack configuration for ActiveAdmin search
   def self.ransackable_associations(auth_object = nil)
     ["category", "order_items", "orders", "shopping_cart_items", "shopping_carts"]

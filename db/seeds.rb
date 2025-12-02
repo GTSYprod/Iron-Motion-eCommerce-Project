@@ -2,7 +2,7 @@
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
-puts "🌱 Seeding database..."
+puts "Seeding database..."
 
 # Admin User
 puts "Creating admin user..."
@@ -13,7 +13,7 @@ unless AdminUser.exists?(email: 'admin@ironandmotion.com')
     password_confirmation: 'password123'
   )
 end
-puts "✓ Admin user created (admin@ironandmotion.com / password123)"
+puts "Admin user created (admin@ironandmotion.com / password123)"
 
 # Categories
 puts "\nCreating categories..."
@@ -63,7 +63,7 @@ categories_data.each do |name, data|
     end
   end
 end
-puts "✓ Created #{Category.count} categories"
+puts "Created #{Category.count} categories"
 
 # Products (Requirement 1.2: 10+ products)
 puts "\nCreating products..."
@@ -218,7 +218,7 @@ products_data.each do |product_data|
     )
   end
 end
-puts "✓ Created #{Product.count} products (images must be uploaded via admin panel)"
+puts "Created #{Product.count} products (images must be uploaded via admin panel)"
 
 # Static Pages (Requirement 1.4)
 puts "\nCreating static pages..."
@@ -291,11 +291,6 @@ unless StaticPage.exists?(slug: 'contact-us')
   )
 end
 
-puts "✓ Created #{StaticPage.count} static pages"
+puts "Created #{StaticPage.count} static pages"
 
-puts "\n✅ Database seeding complete!"
-puts "\nNext steps:"
-puts "1. Visit http://localhost:3000/admin"
-puts "2. Log in with admin@ironandmotion.com / password123"
-puts "3. Upload product images via the Products admin interface"
-puts "4. Test all admin features"
+puts "\nDatabase seeding complete!"

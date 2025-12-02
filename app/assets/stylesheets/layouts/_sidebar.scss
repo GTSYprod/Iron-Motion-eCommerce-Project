@@ -1,0 +1,327 @@
+// ==========================================================================
+// Sidebar Layout
+// ==========================================================================
+
+// Sidebar Container
+// ---------------------------------------------------------------------------
+.sidebar {
+  background-color: $white;
+  border-radius: $border-radius;
+  padding: 0;
+
+  &-sticky {
+    position: sticky;
+    top: calc(#{$spacing-3xl} + 60px); // Account for fixed header
+  }
+}
+
+// Sidebar Section
+// ---------------------------------------------------------------------------
+.sidebar-section {
+  padding: $spacing-xl;
+  border-bottom: 1px solid $border-light;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-sm;
+    border-bottom: 2px solid $primary-color;
+    color: $text-color;
+  }
+}
+
+// Sidebar Menu
+// ---------------------------------------------------------------------------
+.sidebar-menu {
+  @include list-unstyled;
+
+  &-item {
+    margin-bottom: $spacing-xs;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-link {
+    display: block;
+    padding: $spacing-sm $spacing-md;
+    color: $text-color;
+    text-decoration: none;
+    border-radius: $border-radius;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+      background-color: $background-light;
+      color: $primary-color;
+      text-decoration: none;
+    }
+
+    &.active {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+      font-weight: $font-weight-medium;
+    }
+  }
+
+  // Nested Menu
+  .sidebar-submenu {
+    @include list-unstyled;
+    padding-left: $spacing-lg;
+    margin-top: $spacing-xs;
+
+    .sidebar-menu-link {
+      padding: $spacing-xs $spacing-md;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+// Filter Widget
+// ---------------------------------------------------------------------------
+.sidebar-filter {
+  &-group {
+    margin-bottom: $spacing-lg;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-label {
+    display: block;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-sm;
+    color: $text-color;
+  }
+
+  &-options {
+    @include list-unstyled;
+  }
+
+  &-option {
+    margin-bottom: $spacing-sm;
+
+    label {
+      @include flex-center;
+      justify-content: flex-start;
+      gap: $spacing-sm;
+      cursor: pointer;
+      font-weight: $font-weight-normal;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      cursor: pointer;
+    }
+
+    .count {
+      margin-left: auto;
+      color: $text-muted;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+// Price Range Filter
+// ---------------------------------------------------------------------------
+.sidebar-price-range {
+  &-inputs {
+    display: flex;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+
+  input {
+    flex: 1;
+    padding: $spacing-xs $spacing-sm;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    font-size: $font-size-sm;
+  }
+
+  &-slider {
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Sidebar Widget (Generic)
+// ---------------------------------------------------------------------------
+.sidebar-widget {
+  background-color: $background-light;
+  padding: $spacing-lg;
+  border-radius: $border-radius;
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &-title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-md;
+    color: $text-color;
+  }
+
+  &-content {
+    font-size: $font-size-sm;
+    line-height: $line-height-base;
+  }
+}
+
+// Recent Products Widget
+// ---------------------------------------------------------------------------
+.sidebar-recent-products {
+  @include list-unstyled;
+
+  &-item {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid $border-light;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  &-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: $border-radius;
+    flex-shrink: 0;
+  }
+
+  &-content {
+    flex: 1;
+  }
+
+  &-title {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-xs;
+    @include line-clamp(2);
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &-price {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $primary-color;
+  }
+}
+
+// Sidebar Tags
+// ---------------------------------------------------------------------------
+.sidebar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+
+  &-tag {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    background-color: $background-light;
+    color: $text-color;
+    font-size: $font-size-sm;
+    border-radius: $border-radius-full;
+    text-decoration: none;
+    transition: background-color $transition-fast, color $transition-fast;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}
+
+// Mobile Sidebar Toggle
+// ---------------------------------------------------------------------------
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  bottom: $spacing-xl;
+  left: $spacing-xl;
+  @include flex-center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-lg;
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: $border-radius-full;
+  box-shadow: $shadow-lg;
+  cursor: pointer;
+  z-index: $z-index-fixed;
+
+  @include respond-below('lg') {
+    display: flex;
+  }
+}
+
+.sidebar-overlay {
+  display: none;
+
+  @include respond-below('lg') {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($black, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transition-base, visibility $transition-base;
+    z-index: $z-index-modal-backdrop;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+// Mobile Sidebar
+// ---------------------------------------------------------------------------
+@include respond-below('lg') {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 320px;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: $shadow-xl;
+    transition: left $transition-base;
+    z-index: $z-index-modal;
+
+    &.active {
+      left: 0;
+    }
+  }
+}

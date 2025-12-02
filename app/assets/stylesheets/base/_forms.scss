@@ -1,0 +1,263 @@
+// ==========================================================================
+// Base Form Styles
+// ==========================================================================
+
+// Form Groups
+// ---------------------------------------------------------------------------
+.form-group {
+  margin-bottom: $spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Labels
+// ---------------------------------------------------------------------------
+label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-weight: $font-weight-medium;
+  color: $text-color;
+  font-size: $font-size-base;
+}
+
+// Text Inputs
+// ---------------------------------------------------------------------------
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+textarea,
+select {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: $white;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+
+  &::placeholder {
+    color: lighten($text-color, 40%);
+  }
+
+  &:disabled {
+    background-color: $background-light;
+    color: $text-muted;
+    cursor: not-allowed;
+  }
+
+  &[readonly] {
+    background-color: $background-light;
+    cursor: default;
+  }
+}
+
+// Textarea
+// ---------------------------------------------------------------------------
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+// Select
+// ---------------------------------------------------------------------------
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right $spacing-sm center;
+  background-size: 12px;
+  padding-right: $spacing-xl;
+  appearance: none;
+}
+
+// Checkboxes and Radio Buttons
+// ---------------------------------------------------------------------------
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  margin-right: $spacing-xs;
+  cursor: pointer;
+}
+
+// Checkbox and Radio Labels
+// ---------------------------------------------------------------------------
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+
+  input {
+    margin-top: 0;
+  }
+
+  label {
+    margin-bottom: 0;
+    margin-left: $spacing-xs;
+    font-weight: $font-weight-normal;
+    cursor: pointer;
+  }
+}
+
+// File Input
+// ---------------------------------------------------------------------------
+input[type="file"] {
+  width: 100%;
+  padding: $spacing-sm;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  cursor: pointer;
+
+  &::file-selector-button {
+    padding: $spacing-xs $spacing-md;
+    margin-right: $spacing-md;
+    background-color: $background-light;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-sm;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: darken($background-light, 5%);
+    }
+  }
+}
+
+// Form Validation
+// ---------------------------------------------------------------------------
+// Rails field_with_errors wrapper
+.field_with_errors {
+  display: inline;
+
+  input,
+  textarea,
+  select {
+    border-color: $error-color;
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($error-color, 0.1);
+    }
+  }
+
+  label {
+    color: $error-color;
+  }
+}
+
+// Error Messages
+// ---------------------------------------------------------------------------
+.error-message,
+.field-error {
+  display: block;
+  margin-top: $spacing-xs;
+  color: $error-color;
+  font-size: $font-size-sm;
+}
+
+// Help Text
+// ---------------------------------------------------------------------------
+.form-help,
+.help-text {
+  display: block;
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+  color: $text-light;
+}
+
+// Form Actions
+// ---------------------------------------------------------------------------
+.form-actions {
+  margin-top: $spacing-xl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-light;
+  @include flex-between;
+
+  @include respond-below('md') {
+    flex-direction: column;
+    gap: $spacing-md;
+
+    button,
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// Inline Forms
+// ---------------------------------------------------------------------------
+.form-inline {
+  display: flex;
+  gap: $spacing-md;
+  align-items: flex-end;
+
+  .form-group {
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  button,
+  .btn {
+    flex-shrink: 0;
+  }
+
+  @include respond-below('md') {
+    flex-direction: column;
+    align-items: stretch;
+
+    .form-group {
+      width: 100%;
+    }
+  }
+}
+
+// Search Forms
+// ---------------------------------------------------------------------------
+.search-form {
+  position: relative;
+
+  input[type="search"] {
+    padding-right: $spacing-3xl;
+  }
+
+  button {
+    position: absolute;
+    right: $spacing-xs;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: $spacing-xs $spacing-md;
+    background-color: transparent;
+    border: none;
+    color: $text-light;
+    cursor: pointer;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+// Required Field Indicator
+// ---------------------------------------------------------------------------
+.required-indicator,
+abbr[title="required"] {
+  color: $error-color;
+  text-decoration: none;
+  margin-left: $spacing-xs;
+}

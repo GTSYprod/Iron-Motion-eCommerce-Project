@@ -1,0 +1,75 @@
+// ==========================================================================
+// Base Reset Styles
+// ==========================================================================
+
+// Focus Styles
+// ---------------------------------------------------------------------------
+// Accessible focus indication for keyboard navigation
+*:focus-visible {
+  @include focus-outline;
+}
+
+// Better Box Sizing
+// ---------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// Responsive Images
+// ---------------------------------------------------------------------------
+// Ensure images are responsive by default
+img {
+  @include img-fluid;
+}
+
+// Remove Default Margins
+// ---------------------------------------------------------------------------
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+figure,
+blockquote,
+dl, dd {
+  margin: 0;
+}
+
+// Smooth Scrolling
+// ---------------------------------------------------------------------------
+html {
+  scroll-behavior: smooth;
+}
+
+// Body Defaults
+// ---------------------------------------------------------------------------
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: $line-height-base;
+}
+
+// Remove List Styles on ul, ol Elements with a list role
+// ---------------------------------------------------------------------------
+ul[role='list'],
+ol[role='list'] {
+  @include list-unstyled;
+}
+
+// Inherit Fonts for Inputs and Buttons
+// ---------------------------------------------------------------------------
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+// Remove Default Button Styles
+// ---------------------------------------------------------------------------
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}

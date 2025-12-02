@@ -1,0 +1,249 @@
+// ==========================================================================
+// Card Components
+// ==========================================================================
+
+// Base Card
+// ---------------------------------------------------------------------------
+.card {
+  @include card;
+
+  &-bordered {
+    @include card-bordered;
+  }
+
+  &-flat {
+    background-color: $white;
+    border: none;
+    box-shadow: none;
+    padding: $spacing-xl;
+  }
+}
+
+// Card Header
+// ---------------------------------------------------------------------------
+.card-header {
+  margin: (-$spacing-xl) (-$spacing-xl) $spacing-lg (-$spacing-xl);
+  padding: $spacing-lg $spacing-xl;
+  border-bottom: 1px solid $border-light;
+  background-color: $white;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
+  &-accent {
+    border-bottom-width: 3px;
+    border-bottom-color: $primary-color;
+  }
+}
+
+// Card Body
+// ---------------------------------------------------------------------------
+.card-body {
+  // Default padding is inherited from .card
+  // This class exists for semantic structure
+}
+
+// Card Footer
+// ---------------------------------------------------------------------------
+.card-footer {
+  margin: $spacing-lg (-$spacing-xl) (-$spacing-xl) (-$spacing-xl);
+  padding: $spacing-lg $spacing-xl;
+  border-top: 1px solid $border-light;
+  background-color: $background-light;
+
+  &-white {
+    background-color: $white;
+  }
+}
+
+// Card Title
+// ---------------------------------------------------------------------------
+.card-title {
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $text-color;
+}
+
+.card-subtitle {
+  margin-bottom: $spacing-md;
+  font-size: $font-size-base;
+  color: $text-light;
+}
+
+// Card Text
+// ---------------------------------------------------------------------------
+.card-text {
+  margin-bottom: $spacing-md;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Card Link
+// ---------------------------------------------------------------------------
+.card-link {
+  @include flex-between;
+  padding: $spacing-lg;
+  color: $text-color;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $background-light;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+    text-decoration: none;
+  }
+
+  svg,
+  i {
+    color: $primary-color;
+  }
+}
+
+// Card Image
+// ---------------------------------------------------------------------------
+.card-img-top {
+  width: 100%;
+  border-radius: $border-radius $border-radius 0 0;
+  margin: (-$spacing-xl) (-$spacing-xl) $spacing-lg (-$spacing-xl);
+  display: block;
+}
+
+.card-img-bottom {
+  width: 100%;
+  border-radius: 0 0 $border-radius $border-radius;
+  margin: $spacing-lg (-$spacing-xl) (-$spacing-xl) (-$spacing-xl);
+  display: block;
+}
+
+// Card with Image Overlay
+// ---------------------------------------------------------------------------
+.card-img-overlay {
+  position: relative;
+
+  .card-img-top {
+    margin: (-$spacing-xl);
+  }
+
+  .card-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $spacing-xl;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+    color: $white;
+    @include flex-column-center;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+}
+
+// Card Variants
+// ---------------------------------------------------------------------------
+.card-primary {
+  border-left: 4px solid $primary-color;
+}
+
+.card-success {
+  border-left: 4px solid $success-color;
+}
+
+.card-warning {
+  border-left: 4px solid $warning-color;
+}
+
+.card-danger {
+  border-left: 4px solid $error-color;
+}
+
+// Card with Icon
+// ---------------------------------------------------------------------------
+.card-with-icon {
+  @include flex-between;
+  align-items: flex-start;
+
+  .card-icon {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    margin-right: $spacing-lg;
+    @include flex-center;
+    background-color: rgba($primary-color, 0.1);
+    border-radius: $border-radius-lg;
+    color: $primary-color;
+    font-size: $font-size-xl;
+  }
+
+  .card-content {
+    flex: 1;
+  }
+}
+
+// Stats Card
+// ---------------------------------------------------------------------------
+.stats-card {
+  @include card;
+  text-align: center;
+
+  .stats-value {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    margin-bottom: $spacing-xs;
+  }
+
+  .stats-label {
+    font-size: $font-size-base;
+    color: $text-light;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .stats-change {
+    margin-top: $spacing-sm;
+    font-size: $font-size-sm;
+
+    &.positive {
+      color: $success-color;
+    }
+
+    &.negative {
+      color: $error-color;
+    }
+  }
+}
+
+// Horizontal Card
+// ---------------------------------------------------------------------------
+.card-horizontal {
+  @include card;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+
+  .card-img-left {
+    width: 200px;
+    object-fit: cover;
+    border-radius: $border-radius 0 0 $border-radius;
+  }
+
+  .card-body {
+    padding: $spacing-xl;
+    flex: 1;
+  }
+
+  @include respond-below('md') {
+    flex-direction: column;
+
+    .card-img-left {
+      width: 100%;
+      border-radius: $border-radius $border-radius 0 0;
+    }
+  }
+}

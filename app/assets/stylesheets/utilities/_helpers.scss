@@ -1,0 +1,563 @@
+// ==========================================================================
+// Utility Helper Classes
+// ==========================================================================
+
+// Text Alignment
+// ---------------------------------------------------------------------------
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+// Text Transform
+// ---------------------------------------------------------------------------
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+// Font Weight
+// ---------------------------------------------------------------------------
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+// Spacing Utilities
+// ---------------------------------------------------------------------------
+// Margin Top
+.mt-0 {
+  margin-top: 0;
+}
+.mt-xs {
+  margin-top: $spacing-xs;
+}
+.mt-sm {
+  margin-top: $spacing-sm;
+}
+.mt-md {
+  margin-top: $spacing-md;
+}
+.mt-lg {
+  margin-top: $spacing-lg;
+}
+.mt-xl {
+  margin-top: $spacing-xl;
+}
+.mt-2xl {
+  margin-top: $spacing-2xl;
+}
+.mt-3xl {
+  margin-top: $spacing-3xl;
+}
+
+// Margin Bottom
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-xs {
+  margin-bottom: $spacing-xs;
+}
+.mb-sm {
+  margin-bottom: $spacing-sm;
+}
+.mb-md {
+  margin-bottom: $spacing-md;
+}
+.mb-lg {
+  margin-bottom: $spacing-lg;
+}
+.mb-xl {
+  margin-bottom: $spacing-xl;
+}
+.mb-2xl {
+  margin-bottom: $spacing-2xl;
+}
+.mb-3xl {
+  margin-bottom: $spacing-3xl;
+}
+
+// Margin Left
+.ml-0 {
+  margin-left: 0;
+}
+.ml-xs {
+  margin-left: $spacing-xs;
+}
+.ml-sm {
+  margin-left: $spacing-sm;
+}
+.ml-md {
+  margin-left: $spacing-md;
+}
+.ml-lg {
+  margin-left: $spacing-lg;
+}
+.ml-xl {
+  margin-left: $spacing-xl;
+}
+
+// Margin Right
+.mr-0 {
+  margin-right: 0;
+}
+.mr-xs {
+  margin-right: $spacing-xs;
+}
+.mr-sm {
+  margin-right: $spacing-sm;
+}
+.mr-md {
+  margin-right: $spacing-md;
+}
+.mr-lg {
+  margin-right: $spacing-lg;
+}
+.mr-xl {
+  margin-right: $spacing-xl;
+}
+
+// Padding Top
+.pt-0 {
+  padding-top: 0;
+}
+.pt-xs {
+  padding-top: $spacing-xs;
+}
+.pt-sm {
+  padding-top: $spacing-sm;
+}
+.pt-md {
+  padding-top: $spacing-md;
+}
+.pt-lg {
+  padding-top: $spacing-lg;
+}
+.pt-xl {
+  padding-top: $spacing-xl;
+}
+.pt-2xl {
+  padding-top: $spacing-2xl;
+}
+.pt-3xl {
+  padding-top: $spacing-3xl;
+}
+
+// Padding Bottom
+.pb-0 {
+  padding-bottom: 0;
+}
+.pb-xs {
+  padding-bottom: $spacing-xs;
+}
+.pb-sm {
+  padding-bottom: $spacing-sm;
+}
+.pb-md {
+  padding-bottom: $spacing-md;
+}
+.pb-lg {
+  padding-bottom: $spacing-lg;
+}
+.pb-xl {
+  padding-bottom: $spacing-xl;
+}
+.pb-2xl {
+  padding-bottom: $spacing-2xl;
+}
+.pb-3xl {
+  padding-bottom: $spacing-3xl;
+}
+
+// Display Utilities
+// ---------------------------------------------------------------------------
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+// Flex Utilities
+// ---------------------------------------------------------------------------
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-initial {
+  flex: initial;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.gap-xs {
+  gap: $spacing-xs;
+}
+
+.gap-sm {
+  gap: $spacing-sm;
+}
+
+.gap-md {
+  gap: $spacing-md;
+}
+
+.gap-lg {
+  gap: $spacing-lg;
+}
+
+.gap-xl {
+  gap: $spacing-xl;
+}
+
+// Position Utilities
+// ---------------------------------------------------------------------------
+.position-static {
+  position: static;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.position-sticky {
+  position: sticky;
+}
+
+// Width Utilities
+// ---------------------------------------------------------------------------
+.w-full {
+  width: 100%;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-75 {
+  width: 75%;
+}
+
+// Height Utilities
+// ---------------------------------------------------------------------------
+.h-full {
+  height: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+// Overflow Utilities
+// ---------------------------------------------------------------------------
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+// Visibility Utilities
+// ---------------------------------------------------------------------------
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+// Opacity Utilities
+// ---------------------------------------------------------------------------
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+// Cursor Utilities
+// ---------------------------------------------------------------------------
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+// Screen Reader Only
+// ---------------------------------------------------------------------------
+.sr-only {
+  @include sr-only;
+}
+
+// Truncate Text
+// ---------------------------------------------------------------------------
+.truncate {
+  @include truncate;
+}
+
+// Line Clamp
+// ---------------------------------------------------------------------------
+.line-clamp-1 {
+  @include line-clamp(1);
+}
+
+.line-clamp-2 {
+  @include line-clamp(2);
+}
+
+.line-clamp-3 {
+  @include line-clamp(3);
+}
+
+// Shadow Utilities
+// ---------------------------------------------------------------------------
+.shadow-none {
+  box-shadow: none;
+}
+
+.shadow-sm {
+  box-shadow: $shadow-sm;
+}
+
+.shadow {
+  box-shadow: $shadow;
+}
+
+.shadow-md {
+  box-shadow: $shadow-md;
+}
+
+.shadow-lg {
+  box-shadow: $shadow-lg;
+}
+
+.shadow-xl {
+  box-shadow: $shadow-xl;
+}
+
+// Border Radius
+// ---------------------------------------------------------------------------
+.rounded-none {
+  border-radius: 0;
+}
+
+.rounded-sm {
+  border-radius: $border-radius-sm;
+}
+
+.rounded {
+  border-radius: $border-radius;
+}
+
+.rounded-md {
+  border-radius: $border-radius-md;
+}
+
+.rounded-lg {
+  border-radius: $border-radius-lg;
+}
+
+.rounded-xl {
+  border-radius: $border-radius-xl;
+}
+
+.rounded-full {
+  border-radius: $border-radius-full;
+}
+
+// Container
+// ---------------------------------------------------------------------------
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-xl;
+  padding-right: $spacing-xl;
+
+  &-sm {
+    max-width: $container-sm;
+  }
+
+  &-md {
+    max-width: $container-md;
+  }
+
+  &-lg {
+    max-width: $container-lg;
+  }
+
+  &-xl {
+    max-width: $container-xl;
+  }
+
+  &-2xl {
+    max-width: $container-2xl;
+  }
+}
+
+// Responsive Utilities
+// ---------------------------------------------------------------------------
+@include respond-below('md') {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@include respond-to('md') {
+  .hide-desktop {
+    display: none !important;
+  }
+
+  .show-mobile {
+    display: none !important;
+  }
+}

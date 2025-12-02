@@ -1,0 +1,68 @@
+// ==========================================================================
+// Iron & Motion Fitness Equipment E-commerce
+// Main SCSS Manifest
+// ==========================================================================
+//
+// This file serves as the entry point for all custom SCSS styles.
+// Tailwind CSS is compiled separately (app/assets/tailwind/application.css)
+//
+// Import Order:
+// 1. Variables & Configuration
+// 2. Mixins & Functions
+// 3. Base Styles
+// 4. Layout Components
+// 5. Reusable Components
+// 6. Page-Specific Styles
+// 7. Utilities
+// 8. Vendor/Third-Party
+//
+// ==========================================================================
+
+// 1. Variables & Configuration
+// ---------------------------------------------------------------------------
+@import "variables";
+
+// 2. Mixins & Functions
+// ---------------------------------------------------------------------------
+@import "mixins";
+
+// 3. Base Styles
+// ---------------------------------------------------------------------------
+@import "base/reset";
+@import "base/typography";
+@import "base/forms";
+
+// 4. Layout Components
+// ---------------------------------------------------------------------------
+@import "layouts/header";
+@import "layouts/footer";
+@import "layouts/sidebar";
+
+// 5. Reusable Components
+// ---------------------------------------------------------------------------
+@import "components/buttons";
+@import "components/cards";
+@import "components/navigation";
+@import "components/product-grid";
+
+// 6. Page-Specific Styles
+// ---------------------------------------------------------------------------
+@import "pages/home";
+@import "pages/products";
+@import "pages/checkout";
+
+// 7. Utilities
+// ---------------------------------------------------------------------------
+@import "utilities/helpers";
+@import "utilities/animations";
+
+// 8. Vendor/Third-Party
+// ---------------------------------------------------------------------------
+@import "vendor/trix";
+
+// ==========================================================================
+// Notes:
+// - Active Admin has its own separate SCSS file (active_admin.scss)
+// - Tailwind CSS is compiled separately via tailwindcss-rails gem
+// - Both CSS files are loaded in the application layout
+// =========================================================================

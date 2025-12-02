@@ -1,0 +1,255 @@
+// ==========================================================================
+// Button Components
+// ==========================================================================
+
+// Base Button Class
+// ---------------------------------------------------------------------------
+.btn {
+  @include button-base;
+}
+
+// Button Variants
+// ---------------------------------------------------------------------------
+.btn-primary {
+  background-color: $primary-color;
+  color: $white;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: darken($primary-color, 15%);
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary-color;
+  color: $white;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: darken($secondary-color, 15%);
+  }
+}
+
+.btn-success {
+  background-color: $success-color;
+  color: $white;
+
+  &:hover {
+    background-color: darken($success-color, 10%);
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: darken($success-color, 15%);
+  }
+}
+
+.btn-warning {
+  background-color: $warning-color;
+  color: $white;
+
+  &:hover {
+    background-color: darken($warning-color, 10%);
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: darken($warning-color, 15%);
+  }
+}
+
+.btn-danger {
+  background-color: $error-color;
+  color: $white;
+
+  &:hover {
+    background-color: darken($error-color, 10%);
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: darken($error-color, 15%);
+  }
+}
+
+// Outline Buttons
+// ---------------------------------------------------------------------------
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid $primary-color;
+  color: $primary-color;
+
+  &:hover {
+    background-color: $primary-color;
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: darken($primary-color, 10%);
+    border-color: darken($primary-color, 10%);
+  }
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border: 2px solid $secondary-color;
+  color: $secondary-color;
+
+  &:hover {
+    background-color: $secondary-color;
+    color: $white;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: darken($secondary-color, 10%);
+    border-color: darken($secondary-color, 10%);
+  }
+}
+
+// Button Sizes
+// ---------------------------------------------------------------------------
+.btn-sm {
+  padding: $spacing-xs $spacing-md;
+  font-size: $font-size-sm;
+}
+
+.btn-lg {
+  padding: $spacing-md $spacing-xl;
+  font-size: $font-size-lg;
+}
+
+.btn-block {
+  width: 100%;
+  display: block;
+}
+
+// Ghost Button (Transparent)
+// ---------------------------------------------------------------------------
+.btn-ghost {
+  background-color: transparent;
+  border: none;
+  color: $primary-color;
+  padding: $spacing-xs $spacing-md;
+
+  &:hover {
+    background-color: rgba($primary-color, 0.1);
+    transform: none;
+    box-shadow: none;
+  }
+
+  &:active {
+    background-color: rgba($primary-color, 0.2);
+  }
+}
+
+// Link Button
+// ---------------------------------------------------------------------------
+.btn-link {
+  background-color: transparent;
+  border: none;
+  color: $primary-color;
+  padding: 0;
+  text-decoration: underline;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+// Button Groups
+// ---------------------------------------------------------------------------
+.btn-group {
+  display: inline-flex;
+  gap: $spacing-sm;
+
+  @include respond-below('md') {
+    flex-direction: column;
+    width: 100%;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// Icon Buttons
+// ---------------------------------------------------------------------------
+.btn-icon {
+  @include flex-center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+
+  svg,
+  i {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &.btn-icon-sm {
+    width: 2rem;
+    height: 2rem;
+
+    svg,
+    i {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &.btn-icon-lg {
+    width: 3rem;
+    height: 3rem;
+
+    svg,
+    i {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+
+// Loading State
+// ---------------------------------------------------------------------------
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -1,0 +1,216 @@
+// ==========================================================================
+// Base Typography Styles
+// ==========================================================================
+
+// Body Text
+// ---------------------------------------------------------------------------
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Headings
+// ---------------------------------------------------------------------------
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: $spacing-md;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  color: $text-color;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+
+  @include respond-below('md') {
+    font-size: $font-size-3xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-3xl;
+
+  @include respond-below('md') {
+    font-size: $font-size-2xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-2xl;
+
+  @include respond-below('md') {
+    font-size: $font-size-xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-xl;
+}
+
+h5 {
+  font-size: $font-size-lg;
+}
+
+h6 {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+// Paragraphs
+// ---------------------------------------------------------------------------
+p {
+  margin-top: 0;
+  margin-bottom: $spacing-md;
+  line-height: $line-height-base;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+// ---------------------------------------------------------------------------
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    @include focus-outline;
+  }
+
+  &:active {
+    color: darken($primary-color, 15%);
+  }
+}
+
+// Lists
+// ---------------------------------------------------------------------------
+ul, ol {
+  margin-top: 0;
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-xl;
+
+  li {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+// Definition Lists
+// ---------------------------------------------------------------------------
+dl {
+  margin-bottom: $spacing-md;
+}
+
+dt {
+  font-weight: $font-weight-semibold;
+  margin-bottom: $spacing-xs;
+}
+
+dd {
+  margin-bottom: $spacing-md;
+  margin-left: 0;
+}
+
+// Blockquotes
+// ---------------------------------------------------------------------------
+blockquote {
+  margin: $spacing-lg 0;
+  padding-left: $spacing-lg;
+  border-left: 4px solid $border-color;
+  font-style: italic;
+  color: $text-light;
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  cite {
+    display: block;
+    margin-top: $spacing-sm;
+    font-size: $font-size-sm;
+    font-style: normal;
+    color: $text-muted;
+  }
+}
+
+// Code
+// ---------------------------------------------------------------------------
+code {
+  font-family: $font-family-mono;
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background-color: $background-light;
+  border-radius: $border-radius-sm;
+  color: $error-color;
+}
+
+pre {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  background-color: $background-light;
+  border: 1px solid $border-light;
+  border-radius: $border-radius;
+  overflow-x: auto;
+
+  code {
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+  }
+}
+
+// Emphasis
+// ---------------------------------------------------------------------------
+strong, b {
+  font-weight: $font-weight-bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+small {
+  font-size: $font-size-sm;
+}
+
+// Horizontal Rule
+// ---------------------------------------------------------------------------
+hr {
+  margin: $spacing-xl 0;
+  border: 0;
+  border-top: 1px solid $border-color;
+}
+
+// Text Utilities
+// ---------------------------------------------------------------------------
+.text-small {
+  font-size: $font-size-sm;
+}
+
+.text-large {
+  font-size: $font-size-lg;
+}
+
+.text-muted {
+  color: $text-muted;
+}
+
+.text-light {
+  color: $text-light;
+}

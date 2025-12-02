@@ -8,8 +8,11 @@ Rails.application.config.assets.version = "1.0"
 
 Rails.application.config.assets.paths << Rails.root.join("app/assets/css")
 Rails.application.config.assets.paths << Rails.root.join("app/assets/js")
+Rails.application.config.assets.paths << Rails.root.join("app/assets/builds")
 
 Rails.application.config.assets.precompile += %w[
   active_admin.css
   active_admin.js
+  tailwind.css
+  application.css
 ]

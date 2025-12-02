@@ -1,0 +1,154 @@
+// ==========================================================================
+// Header Layout
+// ==========================================================================
+
+// Site Header
+// ---------------------------------------------------------------------------
+.site-header {
+  background-color: $white;
+  box-shadow: $shadow-sm;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-index-sticky;
+}
+
+// Header Top Bar (Optional promotional banner)
+// ---------------------------------------------------------------------------
+.header-top-bar {
+  background-color: $secondary-color;
+  color: $white;
+  padding: $spacing-sm 0;
+  text-align: center;
+  font-size: $font-size-sm;
+
+  a {
+    color: $white;
+    text-decoration: underline;
+
+    &:hover {
+      color: rgba($white, 0.8);
+    }
+  }
+}
+
+// Header Main
+// ---------------------------------------------------------------------------
+.header-main {
+  padding: $spacing-lg 0;
+
+  &-container {
+    max-width: $container-2xl;
+    margin: 0 auto;
+    padding: 0 $spacing-xl;
+    @include flex-between;
+    gap: $spacing-xl;
+  }
+}
+
+// Header Actions (Cart, User, etc.)
+// ---------------------------------------------------------------------------
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+
+  .btn-icon {
+    position: relative;
+
+    .badge {
+      position: absolute;
+      top: -$spacing-xs;
+      right: -$spacing-xs;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 $spacing-xs;
+      background-color: $error-color;
+      color: $white;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      border-radius: $border-radius-full;
+      @include flex-center;
+    }
+  }
+}
+
+// Search Bar in Header
+// ---------------------------------------------------------------------------
+.header-search {
+  flex: 1;
+  max-width: 500px;
+
+  @include respond-below('md') {
+    display: none;
+  }
+
+  form {
+    position: relative;
+  }
+
+  input {
+    width: 100%;
+    padding: $spacing-sm $spacing-3xl $spacing-sm $spacing-md;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-full;
+    font-size: $font-size-base;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+  }
+
+  button {
+    position: absolute;
+    right: $spacing-xs;
+    top: 50%;
+    transform: translateY(-50%);
+    @include flex-center;
+    width: 2rem;
+    height: 2rem;
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color $transition-fast;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// Mobile Search Toggle
+// ---------------------------------------------------------------------------
+.header-search-mobile {
+  display: none;
+
+  @include respond-below('md') {
+    display: block;
+  }
+
+  &.active ~ .header-search-dropdown {
+    display: block;
+  }
+}
+
+.header-search-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: $spacing-lg;
+  background-color: $white;
+  box-shadow: $shadow-md;
+  z-index: $z-index-dropdown;
+
+  @include respond-below('md') {
+    padding: $spacing-md;
+  }
+}

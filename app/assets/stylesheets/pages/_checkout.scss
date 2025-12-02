@@ -1,0 +1,493 @@
+// ==========================================================================
+// Checkout & Cart Pages Styles
+// ==========================================================================
+
+// Checkout Page
+// ---------------------------------------------------------------------------
+.checkout {
+  padding: $spacing-2xl 0;
+
+  &-container {
+    max-width: $container-xl;
+    margin: 0 auto;
+    padding: 0 $spacing-xl;
+  }
+
+  &-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: $spacing-3xl;
+
+    @include respond-below('lg') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Checkout Steps
+// ---------------------------------------------------------------------------
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $spacing-3xl;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: $border-color;
+    z-index: 0;
+  }
+
+  &-step {
+    @include flex-center;
+    flex-direction: column;
+    background-color: $white;
+    padding: 0 $spacing-md;
+    position: relative;
+    z-index: 1;
+
+    &-number {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: $border-color;
+      color: $white;
+      @include flex-center;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-sm;
+      transition: background-color $transition-fast;
+    }
+
+    &-label {
+      font-size: $font-size-sm;
+      color: $text-muted;
+      font-weight: $font-weight-medium;
+      text-align: center;
+    }
+
+    &.active {
+      .checkout-steps-step-number {
+        background-color: $primary-color;
+      }
+
+      .checkout-steps-step-label {
+        color: $primary-color;
+      }
+    }
+
+    &.completed {
+      .checkout-steps-step-number {
+        background-color: $success-color;
+      }
+
+      .checkout-steps-step-label {
+        color: $text-color;
+      }
+    }
+  }
+}
+
+// Checkout Form
+// ---------------------------------------------------------------------------
+.checkout-form {
+  @include card;
+  margin-bottom: $spacing-xl;
+
+  &-title {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-light;
+  }
+
+  &-section {
+    margin-bottom: $spacing-xl;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      font-size: $font-size-lg;
+      margin-bottom: $spacing-md;
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+
+    @include respond-below('md') {
+      grid-template-columns: 1fr;
+    }
+
+    &-full {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+// Order Summary
+// ---------------------------------------------------------------------------
+.order-summary {
+  @include card;
+  position: sticky;
+  top: $spacing-xl;
+
+  &-title {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-light;
+  }
+
+  &-items {
+    margin-bottom: $spacing-lg;
+  }
+
+  &-item {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid $border-light;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &-image {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: $border-radius;
+      flex-shrink: 0;
+    }
+
+    &-details {
+      flex: 1;
+    }
+
+    &-name {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      margin-bottom: $spacing-xs;
+      @include truncate;
+    }
+
+    &-quantity {
+      font-size: $font-size-xs;
+      color: $text-muted;
+    }
+
+    &-price {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $text-color;
+      text-align: right;
+    }
+  }
+
+  &-totals {
+    padding-top: $spacing-lg;
+    border-top: 1px solid $border-light;
+  }
+
+  &-row {
+    @include flex-between;
+    margin-bottom: $spacing-sm;
+
+    &-label {
+      color: $text-light;
+    }
+
+    &-value {
+      font-weight: $font-weight-medium;
+      color: $text-color;
+    }
+
+    &.total {
+      font-size: $font-size-lg;
+      padding-top: $spacing-md;
+      border-top: 2px solid $border-color;
+      margin-top: $spacing-md;
+
+      .order-summary-row-value {
+        color: $primary-color;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+
+  &-actions {
+    margin-top: $spacing-xl;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+// Shopping Cart
+// ---------------------------------------------------------------------------
+.shopping-cart {
+  padding: $spacing-2xl 0;
+
+  &-container {
+    max-width: $container-xl;
+    margin: 0 auto;
+    padding: 0 $spacing-xl;
+  }
+
+  &-title {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-xl;
+  }
+
+  &-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: $spacing-3xl;
+
+    @include respond-below('lg') {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &-items {
+    @include card;
+  }
+
+  &-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: $spacing-lg;
+    padding: $spacing-lg;
+    border-bottom: 1px solid $border-light;
+
+    @include respond-below('md') {
+      grid-template-columns: 80px 1fr;
+      gap: $spacing-md;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: $border-radius;
+
+      @include respond-below('md') {
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    &-details {
+      flex: 1;
+    }
+
+    &-name {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-xs;
+
+      a {
+        color: $text-color;
+        text-decoration: none;
+
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+
+    &-category {
+      font-size: $font-size-sm;
+      color: $text-muted;
+      margin-bottom: $spacing-md;
+    }
+
+    &-price {
+      font-size: $font-size-base;
+      color: $text-light;
+      margin-bottom: $spacing-sm;
+    }
+
+    &-quantity {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+
+      button {
+        width: 1.5rem;
+        height: 1.5rem;
+        @include flex-center;
+        background-color: $background-light;
+        border: 1px solid $border-color;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+        font-size: $font-size-sm;
+
+        &:hover {
+          background-color: $primary-color;
+          border-color: $primary-color;
+          color: $white;
+        }
+      }
+
+      input {
+        width: 3rem;
+        text-align: center;
+        padding: $spacing-xs;
+        border: 1px solid $border-color;
+        border-radius: $border-radius-sm;
+        font-size: $font-size-sm;
+      }
+    }
+
+    &-actions {
+      display: flex;
+      gap: $spacing-sm;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      @include respond-below('md') {
+        grid-column: 1 / -1;
+        justify-content: space-between;
+      }
+    }
+
+    &-total {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $primary-color;
+      text-align: right;
+
+      @include respond-below('md') {
+        text-align: left;
+      }
+    }
+
+    &-remove {
+      color: $error-color;
+      cursor: pointer;
+      padding: $spacing-xs;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: darken($error-color, 10%);
+      }
+    }
+  }
+
+  &-empty {
+    @include card;
+    text-align: center;
+    padding: $spacing-3xl;
+
+    &-icon {
+      font-size: $font-size-4xl;
+      color: $text-muted;
+      margin-bottom: $spacing-lg;
+    }
+
+    &-title {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-md;
+    }
+
+    &-description {
+      color: $text-light;
+      margin-bottom: $spacing-xl;
+    }
+  }
+}
+
+// Cart Summary (Sidebar)
+// ---------------------------------------------------------------------------
+.cart-summary {
+  @include card;
+  position: sticky;
+  top: $spacing-xl;
+
+  &-title {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-light;
+  }
+
+  &-row {
+    @include flex-between;
+    margin-bottom: $spacing-sm;
+
+    &-label {
+      color: $text-light;
+    }
+
+    &-value {
+      font-weight: $font-weight-medium;
+      color: $text-color;
+    }
+
+    &.total {
+      font-size: $font-size-xl;
+      padding-top: $spacing-lg;
+      margin-top: $spacing-lg;
+      border-top: 2px solid $border-color;
+
+      .cart-summary-row-value {
+        color: $primary-color;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+
+  &-actions {
+    margin-top: $spacing-xl;
+
+    .btn {
+      width: 100%;
+      margin-bottom: $spacing-sm;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &-promo {
+    margin-top: $spacing-lg;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $border-light;
+
+    label {
+      display: block;
+      margin-bottom: $spacing-xs;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+    }
+
+    .promo-input {
+      display: flex;
+      gap: $spacing-sm;
+
+      input {
+        flex: 1;
+      }
+
+      button {
+        flex-shrink: 0;
+      }
+    }
+  }
+}

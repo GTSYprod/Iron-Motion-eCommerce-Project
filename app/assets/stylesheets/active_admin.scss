@@ -1,183 +1,744 @@
+// ==========================================================================
+// Iron & Motion Fitness Equipment - Admin Dashboard Styles
+// ==========================================================================
+//
+// Enhanced styling for ActiveAdmin dashboard with modern design patterns
+// and consistent branding throughout the admin interface.
+//
+// ==========================================================================
+
+// Modern Sass modules
+@use "sass:color";
+
+// Import project variables and mixins
+@import "variables";
+@import "mixins";
+
 // Sass variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
 // `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
 // Active Admin source.
-//
-// For example, to change the sidebar width:
-// $sidebar-width: 242px;
+
+// Active Admin Variable Overrides
+// ---------------------------------------------------------------------------
+$primary-color: #1e90ff !default;
+$secondary-color: #5E6469 !default;
+$sidebar-width: 270px !default;
+$skinny-header-height: 55px !default;
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
 
-// Overriding any non-variable Sass must be done after the fact.
-// For example, to change the default status-tag color:
-//
-//   .status_tag { background: #6090DB; }
+// ==========================================================================
+// Custom Enhancements
+// ==========================================================================
 
-// Custom Dashboard Styling
+// ==========================================================================
+// 1. DASHBOARD STATISTICS CARDS
+// ==========================================================================
+
 .dashboard-stats {
+  margin-bottom: $spacing-xl;
+
   .stat-card {
     text-align: center;
-    padding: 20px;
+    padding: $spacing-xl;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: $border-radius-lg;
+    position: relative;
+    overflow: hidden;
+
+    // Decorative element
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, $primary-color 0%, color.adjust($primary-color, $lightness: 15%) 100%);
+    }
 
     h2 {
-      font-size: 48px;
-      font-weight: bold;
-      color: #5E6469;
-      margin: 10px 0;
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      color: $secondary-color;
+      margin: $spacing-md 0;
+      line-height: $line-height-tight;
+      letter-spacing: -0.02em;
     }
 
     p {
-      color: #666;
-      font-size: 14px;
-      margin: 5px 0;
+      color: $text-light;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      margin: $spacing-xs 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+
+      &:first-of-type {
+        margin-top: $spacing-sm;
+      }
     }
 
     .stat-link {
       display: inline-block;
-      margin-top: 10px;
-      color: #5E6469;
+      margin-top: $spacing-md;
+      padding: $spacing-sm $spacing-lg;
+      color: $primary-color;
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s ease;
+      font-weight: $font-weight-medium;
+      font-size: $font-size-sm;
+      border-radius: $border-radius;
+      transition: all $transition-fast;
+      border: 1px solid transparent;
 
       &:hover {
-        color: #1e90ff;
+        color: $white;
+        background-color: $primary-color;
+        border-color: $primary-color;
+        transform: translateY(-1px);
+        box-shadow: $shadow-sm;
+      }
+
+      &:active {
+        transform: translateY(0);
       }
     }
   }
 
+  // Enhanced panel hover effect
   .panel {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: $border-radius-lg;
+    border: 1px solid $border-light;
+    box-shadow: $shadow-sm;
+    transition: all $transition-fast;
+    overflow: hidden;
 
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+      box-shadow: $shadow-md;
+      border-color: color.adjust($border-light, $lightness: -5%);
+    }
+
+    > h3 {
+      background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+      font-weight: $font-weight-semibold;
+      color: $secondary-color;
+      border-bottom: 2px solid $border-light;
     }
   }
 }
 
-// Quick Actions Styling
+// ==========================================================================
+// 2. QUICK ACTIONS
+// ==========================================================================
+
 .quick-actions {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  @include list-unstyled;
 
   li {
-    margin: 12px 0;
+    margin: $spacing-md 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     .action-link {
-      display: block;
-      padding: 12px 16px;
-      background-color: #f8f9fa;
-      color: #5E6469;
+      display: flex;
+      align-items: center;
+      padding: $spacing-md $spacing-lg;
+      background-color: $background-light;
+      color: $secondary-color;
       text-decoration: none;
-      border-radius: 4px;
-      border-left: 4px solid #1e90ff;
-      transition: all 0.2s ease;
-      font-weight: 500;
+      border-radius: $border-radius-md;
+      border-left: 4px solid $primary-color;
+      transition: all $transition-fast;
+      font-weight: $font-weight-medium;
+      font-size: $font-size-sm;
+      box-shadow: $shadow-sm;
+
+      &::after {
+        content: '→';
+        margin-left: auto;
+        padding-left: $spacing-md;
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all $transition-fast;
+      }
 
       &:hover {
-        background-color: #1e90ff;
-        color: white;
+        background-color: $primary-color;
+        color: $white;
         transform: translateX(4px);
+        box-shadow: $shadow-md;
+        border-left-width: 6px;
+
+        &::after {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      &:active {
+        transform: translateX(2px);
       }
     }
   }
 }
 
-// Alert Styling
+// ==========================================================================
+// 3. ALERTS AND NOTIFICATIONS
+// ==========================================================================
+
 .alert-success {
-  color: #28a745;
+  color: $success-color;
+  font-weight: $font-weight-medium;
   font-style: italic;
+  padding: $spacing-sm;
+  border-radius: $border-radius;
+  background-color: color.adjust($success-color, $lightness: 45%);
+  display: inline-block;
 }
 
-// Product Images Grid
-.product-images-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+.flash {
+  &.flash_notice {
+    background-color: color.adjust($success-color, $lightness: 45%);
+    border-left: 4px solid $success-color;
+    color: color.adjust($success-color, $lightness: -10%);
+  }
 
-  .product-image-item {
-    img {
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  &.flash_error,
+  &.flash_alert {
+    background-color: color.adjust($error-color, $lightness: 45%);
+    border-left: 4px solid $error-color;
+    color: color.adjust($error-color, $lightness: -10%);
+  }
+}
+
+// ==========================================================================
+// 4. ENHANCED STATUS TAGS
+// ==========================================================================
+
+.status_tag {
+  padding: $spacing-xs $spacing-md;
+  border-radius: $border-radius-full;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: $shadow-sm;
+  border: none;
+
+  // Success states
+  &.ok,
+  &.published,
+  &.yes,
+  &.in_stock,
+  &.delivered {
+    background-color: $success-color;
+    color: $white;
+  }
+
+  // Warning states
+  &.warning,
+  &.low_stock,
+  &.processing,
+  &.shipped {
+    background-color: $warning-color;
+    color: $white;
+  }
+
+  // Error states
+  &.error,
+  &.out_of_stock,
+  &.cancelled {
+    background-color: $error-color;
+    color: $white;
+  }
+
+  // Info states
+  &.pending,
+  &.draft {
+    background-color: $info-color;
+    color: $white;
+  }
+
+  // Neutral states
+  &.no {
+    background-color: $text-muted;
+    color: $white;
+  }
+}
+
+// ==========================================================================
+// 5. ENHANCED TABLES
+// ==========================================================================
+
+.index_table,
+.table_for table {
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-light;
+
+  thead {
+    background: linear-gradient(135deg, $secondary-color 0%, color.adjust($secondary-color, $lightness: 5%) 100%);
+
+    th {
+      color: $white;
+      font-weight: $font-weight-semibold;
+      text-transform: uppercase;
+      font-size: $font-size-xs;
+      letter-spacing: 0.05em;
+      padding: $spacing-md $spacing-lg;
+      border-bottom: 2px solid color.adjust($secondary-color, $lightness: -10%);
+
+      a {
+        color: $white;
+
+        &:hover {
+          color: color.adjust($primary-color, $lightness: 20%);
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background-color $transition-fast;
+
+      &:nth-child(even) {
+        background-color: color.adjust($background-light, $lightness: 2%);
+      }
+
+      &:hover {
+        background-color: color.adjust($primary-color, $lightness: 45%);
+      }
+
+      td {
+        padding: $spacing-md $spacing-lg;
+        border-bottom: 1px solid $border-light;
+        vertical-align: middle;
+
+        img {
+          border-radius: $border-radius;
+          box-shadow: $shadow-sm;
+        }
+      }
     }
   }
 }
 
-// Existing Images Display
-.existing-images {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
+// ==========================================================================
+// 6. PRODUCT IMAGES
+// ==========================================================================
 
-  h4 {
-    margin: 0 0 15px 0;
-    color: #5E6469;
+.product-images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-lg;
+  margin-top: $spacing-lg;
+
+  .product-image-item {
+    position: relative;
+    border-radius: $border-radius-lg;
+    overflow: hidden;
+    box-shadow: $shadow;
+    transition: all $transition-fast;
+
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: $shadow-lg;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: $border-radius-lg;
+    }
   }
 }
 
-// Rich Text Content Display
+.existing-images {
+  margin-bottom: $spacing-xl;
+  padding: $spacing-lg;
+  background-color: $background-light;
+  border-radius: $border-radius-lg;
+  border: 2px dashed $border-color;
+
+  h4 {
+    margin: 0 0 $spacing-lg 0;
+    color: $secondary-color;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-lg;
+  }
+
+  > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: $spacing-md;
+  }
+}
+
+// ==========================================================================
+// 7. RICH TEXT CONTENT
+// ==========================================================================
+
 .rich-text-content {
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-  border-left: 4px solid #1e90ff;
-  margin: 10px 0;
+  padding: $spacing-xl;
+  background-color: $background-light;
+  border-radius: $border-radius-lg;
+  border-left: 4px solid $primary-color;
+  margin: $spacing-md 0;
+  box-shadow: $shadow-sm;
 
   h1, h2, h3, h4, h5, h6 {
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-    color: #2c3e50;
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-md;
+    color: $secondary-color;
+    font-weight: $font-weight-semibold;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  p {
+    margin-bottom: $spacing-md;
+    line-height: $line-height-relaxed;
   }
 
   ul, ol {
-    margin-left: 20px;
+    margin-left: $spacing-xl;
+    margin-bottom: $spacing-md;
+
+    li {
+      margin-bottom: $spacing-sm;
+    }
   }
 
   img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
+    @include img-fluid;
+    border-radius: $border-radius-lg;
+    margin: $spacing-lg 0;
+    box-shadow: $shadow-md;
   }
 
   a {
-    color: #1e90ff;
+    color: $primary-color;
     text-decoration: none;
+    font-weight: $font-weight-medium;
+    transition: color $transition-fast;
 
     &:hover {
+      color: color.adjust($primary-color, $lightness: -15%);
       text-decoration: underline;
+    }
+  }
+
+  code {
+    background-color: color.adjust($background-light, $lightness: -3%);
+    padding: 2px 6px;
+    border-radius: $border-radius-sm;
+    font-family: $font-family-mono;
+    font-size: 0.9em;
+  }
+}
+
+// ==========================================================================
+// 8. ENHANCED FORMS
+// ==========================================================================
+
+.inputs {
+  padding: $spacing-lg;
+  background-color: $background-light;
+  border-radius: $border-radius-lg;
+  margin-bottom: $spacing-lg;
+
+  legend {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $secondary-color;
+    margin-bottom: $spacing-md;
+  }
+
+  ol > li {
+    margin-bottom: $spacing-lg;
+
+    label {
+      font-weight: $font-weight-medium;
+      color: $text-color;
+      margin-bottom: $spacing-sm;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    textarea,
+    select {
+      border: 2px solid $border-color;
+      border-radius: $border-radius-md;
+      padding: $spacing-sm $spacing-md;
+      font-size: $font-size-base;
+      transition: all $transition-fast;
+      width: 100%;
+
+      &:focus {
+        @include focus-outline;
+        border-color: $primary-color;
+        background-color: color.adjust($primary-color, $lightness: 48%);
+      }
+
+      &:hover:not(:focus) {
+        border-color: color.adjust($border-color, $lightness: -10%);
+      }
+    }
+
+    .inline-hints {
+      color: $text-muted;
+      font-size: $font-size-sm;
+      margin-top: $spacing-xs;
+      font-style: italic;
+    }
+
+    &.error {
+      input,
+      textarea,
+      select {
+        border-color: $error-color;
+        background-color: color.adjust($error-color, $lightness: 45%);
+      }
+
+      .inline-errors {
+        color: $error-color;
+        font-weight: $font-weight-medium;
+        margin-top: $spacing-xs;
+      }
     }
   }
 }
 
-// Enhanced Status Tags
-.status_tag {
-  &.ok, &.published, &.yes {
-    background-color: #28a745;
+// ==========================================================================
+// 9. ENHANCED BUTTONS
+// ==========================================================================
+
+.button,
+input[type="submit"],
+a.button {
+  @include button-base;
+  background-color: $primary-color;
+  color: $white;
+  padding: $spacing-sm $spacing-xl;
+  font-size: $font-size-base;
+  border-radius: $border-radius-md;
+
+  &:hover {
+    background-color: color.adjust($primary-color, $lightness: -10%);
   }
 
-  &.warning, &.low_stock {
-    background-color: #ff9800;
-  }
-
-  &.error, &.out_of_stock {
-    background-color: #dc3545;
+  &:active {
+    background-color: color.adjust($primary-color, $lightness: -15%);
   }
 }
 
-// Responsive Grid Improvements
+.member_link,
+.action_item a {
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: color.adjust($primary-color, $lightness: 45%);
+  }
+}
+
+// ==========================================================================
+// 10. HEADER AND NAVIGATION
+// ==========================================================================
+
+#header {
+  background: linear-gradient(135deg, $secondary-color 0%, color.adjust($secondary-color, $lightness: 5%) 100%);
+  box-shadow: $shadow-md;
+
+  #site_title {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-xl;
+    letter-spacing: -0.01em;
+  }
+
+  #utility_nav {
+    a {
+      transition: all $transition-fast;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+
+#title_bar {
+  background: linear-gradient(135deg, $background-light 0%, $white 100%);
+  border-bottom: 2px solid $border-light;
+  box-shadow: $shadow-sm;
+
+  .action_items {
+    a {
+      @include button-base;
+      background-color: $primary-color;
+      color: $white;
+      padding: $spacing-sm $spacing-lg;
+
+      &:hover {
+        background-color: color.adjust($primary-color, $lightness: -10%);
+      }
+    }
+  }
+}
+
+#tabs {
+  background: linear-gradient(135deg, $secondary-color 0%, color.adjust($secondary-color, $lightness: 5%) 100%);
+
+  ul.tabs > li {
+    > a {
+      color: rgba(255, 255, 255, 0.8);
+      transition: all $transition-fast;
+      border-radius: $border-radius $border-radius 0 0;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: $white;
+      }
+    }
+
+    &.current > a {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+}
+
+// ==========================================================================
+// 11. PANELS
+// ==========================================================================
+
+.panel {
+  background-color: $white;
+  border: 1px solid $border-light;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  margin-bottom: $spacing-xl;
+  overflow: hidden;
+
+  > h3 {
+    background: linear-gradient(135deg, $background-light 0%, $white 100%);
+    padding: $spacing-md $spacing-xl;
+    font-weight: $font-weight-semibold;
+    color: $secondary-color;
+    border-bottom: 2px solid $border-light;
+    font-size: $font-size-lg;
+    margin: 0;
+  }
+
+  .panel_contents {
+    padding: $spacing-xl;
+  }
+}
+
+// ==========================================================================
+// 12. RESPONSIVE DESIGN
+// ==========================================================================
+
 @media screen and (max-width: 768px) {
   .dashboard-stats .columns {
     display: block;
 
     .column {
       width: 100%;
-      margin-bottom: 15px;
+      margin-bottom: $spacing-lg;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
+
+  .product-images-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .existing-images > div {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .index_table,
+  .table_for table {
+    font-size: $font-size-sm;
+
+    thead th,
+    tbody td {
+      padding: $spacing-sm;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .product-images-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-stats .stat-card {
+    padding: $spacing-lg;
+
+    h2 {
+      font-size: $font-size-3xl;
+    }
+  }
+}
+
+// ==========================================================================
+// 13. LOADING STATES
+// ==========================================================================
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel,
+.stat-card {
+  animation: fadeIn 0.4s ease-out;
+}
+
+// ==========================================================================
+// 14. UTILITY CLASSES
+// ==========================================================================
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: $text-muted;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mt-2 {
+  margin-top: $spacing-lg;
 }

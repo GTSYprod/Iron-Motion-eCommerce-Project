@@ -1,0 +1,108 @@
+// ==========================================================================
+// SCSS Variables - Iron & Motion Fitness Equipment
+// ==========================================================================
+
+// Brand Colors
+// ---------------------------------------------------------------------------
+$primary-color: #1e90ff;      // Blue - Primary brand color
+$secondary-color: #5E6469;    // Dark gray - Secondary brand color
+$success-color: #28a745;      // Green - Success states
+$warning-color: #ff9800;      // Orange - Warning states
+$error-color: #dc3545;        // Red - Error states
+$info-color: #17a2b8;         // Teal - Informational messages
+
+// Neutral Colors
+// ---------------------------------------------------------------------------
+$text-color: #333;            // Primary text color
+$text-light: #666;            // Secondary text color
+$text-muted: #999;            // Muted text color
+$border-color: #ddd;          // Default border color
+$border-light: #e9ecef;       // Light border color
+$background-light: #f8f9fa;   // Light background color
+$background-dark: #343a40;    // Dark background color
+$white: #ffffff;              // Pure white
+$black: #000000;              // Pure black
+
+// Spacing Scale
+// ---------------------------------------------------------------------------
+// Using a consistent 8px base unit for spacing
+$spacing-xs: 0.25rem;   // 4px
+$spacing-sm: 0.5rem;    // 8px
+$spacing-md: 1rem;      // 16px
+$spacing-lg: 1.5rem;    // 24px
+$spacing-xl: 2rem;      // 32px
+$spacing-2xl: 3rem;     // 48px
+$spacing-3xl: 4rem;     // 64px
+
+// Typography
+// ---------------------------------------------------------------------------
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+$font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 2rem;      // 32px
+$font-size-4xl: 2.5rem;    // 40px
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-base: 1.6;
+$line-height-relaxed: 1.8;
+
+// Responsive Breakpoints
+// ---------------------------------------------------------------------------
+// Matching Tailwind CSS default breakpoints
+$breakpoint-sm: 40rem;    // 640px
+$breakpoint-md: 48rem;    // 768px
+$breakpoint-lg: 64rem;    // 1024px
+$breakpoint-xl: 80rem;    // 1280px
+$breakpoint-2xl: 96rem;   // 1536px
+
+// Border Radius
+// ---------------------------------------------------------------------------
+$border-radius-sm: 3px;
+$border-radius: 4px;
+$border-radius-md: 6px;
+$border-radius-lg: 8px;
+$border-radius-xl: 12px;
+$border-radius-full: 9999px;   // Fully rounded (pills, circles)
+
+// Shadows
+// ---------------------------------------------------------------------------
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.2);
+
+// Transitions
+// ---------------------------------------------------------------------------
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Z-Index Scale
+// ---------------------------------------------------------------------------
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Container Max Widths
+// ---------------------------------------------------------------------------
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+$container-2xl: 1536px;

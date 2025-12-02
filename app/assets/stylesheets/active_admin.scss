@@ -15,3 +15,169 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+// Custom Dashboard Styling
+.dashboard-stats {
+  .stat-card {
+    text-align: center;
+    padding: 20px;
+
+    h2 {
+      font-size: 48px;
+      font-weight: bold;
+      color: #5E6469;
+      margin: 10px 0;
+    }
+
+    p {
+      color: #666;
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .stat-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #5E6469;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #1e90ff;
+      }
+    }
+  }
+
+  .panel {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Quick Actions Styling
+.quick-actions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 12px 0;
+
+    .action-link {
+      display: block;
+      padding: 12px 16px;
+      background-color: #f8f9fa;
+      color: #5E6469;
+      text-decoration: none;
+      border-radius: 4px;
+      border-left: 4px solid #1e90ff;
+      transition: all 0.2s ease;
+      font-weight: 500;
+
+      &:hover {
+        background-color: #1e90ff;
+        color: white;
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+
+// Alert Styling
+.alert-success {
+  color: #28a745;
+  font-style: italic;
+}
+
+// Product Images Grid
+.product-images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+
+  .product-image-item {
+    img {
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Existing Images Display
+.existing-images {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+
+  h4 {
+    margin: 0 0 15px 0;
+    color: #5E6469;
+  }
+}
+
+// Rich Text Content Display
+.rich-text-content {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 4px solid #1e90ff;
+  margin: 10px 0;
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: #2c3e50;
+  }
+
+  ul, ol {
+    margin-left: 20px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  a {
+    color: #1e90ff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Enhanced Status Tags
+.status_tag {
+  &.ok, &.published, &.yes {
+    background-color: #28a745;
+  }
+
+  &.warning, &.low_stock {
+    background-color: #ff9800;
+  }
+
+  &.error, &.out_of_stock {
+    background-color: #dc3545;
+  }
+}
+
+// Responsive Grid Improvements
+@media screen and (max-width: 768px) {
+  .dashboard-stats .columns {
+    display: block;
+
+    .column {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+}

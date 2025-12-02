@@ -25,8 +25,17 @@ class Category < ApplicationRecord
   private
 
   def parent_cannot_be_self
-    if parent_category_id == id
+    if parent_category_id.present? && id.present? && parent_category_id == id
       errors.add(:parent_category_id, "cannot be the category itself")
     end
+  end
+
+  # Ransack configuration for ActiveAdmin search
+  def self.ransackable_associations(auth_object = nil)
+    ["parent_category", "products", "subcategories"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "description", "id", "name", "parent_category_id", "updated_at"]
   end
 end

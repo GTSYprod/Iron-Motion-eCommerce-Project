@@ -13,6 +13,9 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_items
   has_many :shopping_carts, through: :shopping_cart_items
 
+  # Constants
+  STOCK_STATUSES = %w[in_stock out_of_stock low_stock].freeze
+
   # Validations (Requirement 4.2.1)
   validates :name, presence: true, length: { minimum: 3, maximum: 200 }
   validates :description, presence: true, length: { minimum: 10 }
@@ -20,7 +23,7 @@ class Product < ApplicationRecord
             numericality: { greater_than: 0, less_than: 1_000_000 }
   validates :category, presence: true
   validates :stock_status, presence: true,
-            inclusion: { in: %w[in_stock out_of_stock low_stock] }
+            inclusion: { in: STOCK_STATUSES }
   validates :stock_quantity, numericality: {
     greater_than_or_equal_to: 0,
     only_integer: true
@@ -48,5 +51,14 @@ class Product < ApplicationRecord
 
   def in_stock?
     stock_status == 'in_stock' && stock_quantity > 0
+  end
+
+  # Ransack configuration for ActiveAdmin search
+  def self.ransackable_associations(auth_object = nil)
+    ["category", "order_items", "orders", "shopping_cart_items", "shopping_carts"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["category_id", "created_at", "description", "id", "is_new", "name", "on_sale", "price", "specification", "stock_quantity", "stock_status", "updated_at"]
   end
 end

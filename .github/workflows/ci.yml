@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Make Rails script executable
+        run: chmod +x bin/rails
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -26,6 +29,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Make Rails script executable
+        run: chmod +x bin/rails
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -41,6 +47,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
+      - name: Make Rails script executable
+        run: chmod +x bin/rails
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -75,6 +84,9 @@ jobs:
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config google-chrome-stable
+
+      - name: Make Rails script executable
+        run: chmod +x bin/rails
 
       - name: Checkout code
         uses: actions/checkout@v4

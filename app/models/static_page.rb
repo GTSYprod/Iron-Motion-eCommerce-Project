@@ -28,6 +28,6 @@ class StaticPage < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "id", "published", "slug", "title", "updated_at"]
+    [ "created_at", "id", "published", "slug", "title", "updated_at" ]
   end
 end

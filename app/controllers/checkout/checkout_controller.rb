@@ -25,7 +25,7 @@ module Checkout
       # Create the order
       @order = current_user.orders.build(
         address: address,
-        order_status: 'pending',
+        order_status: "pending",
         order_items_attributes: order_items_attributes
       )
 

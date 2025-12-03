@@ -1,9 +1,9 @@
 class Category < ApplicationRecord
   # Associations
   has_many :products, dependent: :restrict_with_error
-  belongs_to :parent_category, class_name: 'Category', optional: true
-  has_many :subcategories, class_name: 'Category',
-           foreign_key: 'parent_category_id', dependent: :destroy
+  belongs_to :parent_category, class_name: "Category", optional: true
+  has_many :subcategories, class_name: "Category",
+           foreign_key: "parent_category_id", dependent: :destroy
 
   # Validations (Requirement 4.2.1)
   validates :name, presence: true, uniqueness: true,
@@ -32,10 +32,10 @@ class Category < ApplicationRecord
 
   # Ransack configuration for ActiveAdmin search
   def self.ransackable_associations(auth_object = nil)
-    ["parent_category", "products", "subcategories"]
+    [ "parent_category", "products", "subcategories" ]
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "id", "name", "parent_category_id", "updated_at"]
+    [ "created_at", "description", "id", "name", "parent_category_id", "updated_at" ]
   end
 end

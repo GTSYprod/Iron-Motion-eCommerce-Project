@@ -5,6 +5,9 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
 
+  # Nested attributes for order items (Required for checkout)
+  accepts_nested_attributes_for :order_items
+
   # Constants
   ORDER_STATUSES = %w[pending processing shipped delivered cancelled].freeze
 
@@ -23,40 +26,40 @@ class Order < ApplicationRecord
   # Scopes
   scope :recent, -> { order(created_at: :desc) }
   scope :by_status, ->(status) { where(order_status: status) if status.present? }
-  scope :pending, -> { where(order_status: 'pending') }
-  scope :processing, -> { where(order_status: 'processing') }
-  scope :shipped, -> { where(order_status: 'shipped') }
-  scope :delivered, -> { where(order_status: 'delivered') }
-  scope :cancelled, -> { where(order_status: 'cancelled') }
+  scope :pending, -> { where(order_status: "pending") }
+  scope :processing, -> { where(order_status: "processing") }
+  scope :shipped, -> { where(order_status: "shipped") }
+  scope :delivered, -> { where(order_status: "delivered") }
+  scope :cancelled, -> { where(order_status: "cancelled") }
 
   # Helper methods for status checks
   def pending?
-    order_status == 'pending'
+    order_status == "pending"
   end
 
   def processing?
-    order_status == 'processing'
+    order_status == "processing"
   end
 
   def shipped?
-    order_status == 'shipped'
+    order_status == "shipped"
   end
 
   def delivered?
-    order_status == 'delivered'
+    order_status == "delivered"
   end
 
   def cancelled?
-    order_status == 'cancelled'
+    order_status == "cancelled"
   end
 
   # Ransack configuration for ActiveAdmin search
   def self.ransackable_associations(auth_object = nil)
-    ["address", "order_items", "products", "user"]
+    [ "address", "order_items", "products", "user" ]
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["address_id", "created_at", "id", "order_status", "order_total", "updated_at", "user_id"]
+    [ "address_id", "created_at", "id", "order_status", "order_total", "updated_at", "user_id" ]
   end
 
   private

@@ -50,7 +50,6 @@
     </div>
   <% else %>
     <div class="product-grid-empty">
-      <div class="product-grid-empty__icon">📦</div>
       <h2 class="product-grid-empty__title">No products found</h2>
       <% if params[:query].present? || params[:category_id].present? || params[:on_sale].present? || params[:new_arrivals].present? || params[:recently_updated].present? %>
         <p class="product-grid-empty__description">Try adjusting your filters or search terms</p>

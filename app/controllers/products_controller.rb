@@ -13,9 +13,9 @@ class ProductsController < ApplicationController
     end
 
     # Filter scopes (Requirement 2.4)
-    @products = @products.on_sale if params[:on_sale] == 'true'
-    @products = @products.new_arrivals if params[:new_arrivals] == 'true'
-    @products = @products.recently_updated if params[:recently_updated] == 'true'
+    @products = @products.on_sale if params[:on_sale] == "true"
+    @products = @products.new_arrivals if params[:new_arrivals] == "true"
+    @products = @products.recently_updated if params[:recently_updated] == "true"
 
     # Pagination (Requirement 2.5)
     @products = @products.page(params[:page]).per(12)

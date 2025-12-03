@@ -27,7 +27,7 @@ class Address < ApplicationRecord
   private
 
   def normalize_postal_code
-    self.postal_code = postal_code.upcase.gsub(/\s+/, '') if postal_code
+    self.postal_code = postal_code.upcase.gsub(/\s+/, "") if postal_code
   end
 
   def ensure_only_one_default

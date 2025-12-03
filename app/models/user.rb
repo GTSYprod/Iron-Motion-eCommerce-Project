@@ -25,11 +25,11 @@ class User < ApplicationRecord
 
   # Ransack configuration for ActiveAdmin search
   def self.ransackable_associations(auth_object = nil)
-    ["addresses", "orders", "shopping_cart"]
+    [ "addresses", "orders", "shopping_cart" ]
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "email", "first_name", "id", "last_name", "updated_at"]
+    [ "created_at", "email", "first_name", "id", "last_name", "updated_at" ]
   end
 
   private

@@ -1,0 +1,25 @@
+{
+  "name": "iron-and-motion-app",
+  "version": "1.0.0",
+  "description": "Iron & Motion Fitness Equipment E-commerce Application",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:e2e": "cypress run --spec 'cypress/e2e/**/*.cy.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/iron_and_motion_app.git"
+  },
+  "keywords": [
+    "rails",
+    "ecommerce",
+    "fitness"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^13.6.2"
+  }
+}
